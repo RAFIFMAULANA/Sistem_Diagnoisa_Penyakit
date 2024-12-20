@@ -15,9 +15,10 @@ class CreateGejalaPenyakitTable extends Migration
     {
         Schema::create('gejala_penyakit', function (Blueprint $table) {
             $table->id();
-            $table->integer('gejala_id')->unsigned();
-            $table->integer('penyakit_id')->unsigned();
-            $table->float('value_cf')->nullable();
+            $table->foreignId('gejala_id')->constrained('gejalas')->cascadeOnDelete();
+            $table->foreignId('penyakit_id')->constrained('penyakits')->cascadeOnDelete();
+            $table->float('value_cf')->nullable()->comment('Certainty Factor value');
+            $table->timestamps();
         });
     }
 

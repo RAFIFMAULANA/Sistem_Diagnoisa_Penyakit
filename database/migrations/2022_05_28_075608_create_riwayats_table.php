@@ -15,12 +15,12 @@ class CreateRiwayatsTable extends Migration
     {
         Schema::create('riwayats', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->text('hasil_diagnosa');
-            $table->text('cf_max');
-            $table->text('gejala_terpilih');
-            $table->string('file_pdf')->nullable();
-            $table->foreignId('user_id');
+            $table->string('nama')->comment('Nama pasien atau pengguna');
+            $table->text('hasil_diagnosa')->comment('Hasil diagnosa penyakit');
+            $table->decimal('cf_max', 5, 2)->comment('Nilai Certainty Factor maksimal');
+            $table->json('gejala_terpilih')->comment('Gejala yang dipilih oleh pengguna');
+            $table->string('file_pdf')->nullable()->comment('File PDF hasil diagnosa');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,8 +15,9 @@ class CreateGejalasTable extends Migration
     {
         Schema::create('gejalas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('kode');
+            $table->string('nama')->comment('Nama gejala yang dideskripsikan');
+            $table->string('kode')->unique()->comment('Kode unik untuk gejala');
+            $table->timestamps();
         });
     }
 
