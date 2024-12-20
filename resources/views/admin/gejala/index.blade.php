@@ -22,13 +22,13 @@
 					<td><b>{{ $row->kode }}</b></td>
 					<td>{{ $row->nama }}</td>
 					<td>
-						<div class="d-flex justify-content-between">
+						<div class="gap-4 d-flex">
 							<button class="btn btn-primary btn-sm edit" data-id="{{ $row->id }}">
 								<i class="fas fa-edit"></i>
 							</button>
 							<form action="{{ route('admin.gejala.destroy', $row->id) }}" method="post">
 								@csrf
-								<button type="submit" class="ml-1 btn btn-danger btn-sm delete">
+								<button type="submit" class="btn btn-danger btn-sm delete">
 									<i class="fas fa-trash"></i>
 								</button>
 							</form>
