@@ -7,14 +7,14 @@
 	<x-card>
 		<x-slot name="option">
 			<div class="btn btn-success add">
-				<i class="fas fa-plus mr-1"></i> Tambahkan Gejala
+				<i class="mr-1 fas fa-plus"></i> Tambahkan Gejala
 			</div>
 		</x-slot>
-		<table class="table table-hover border">
-			<thead>
+		<table class="table border table-hover">
+			<thead class="text-white bg-primary">
 				<th>Kode</th>
 				<th>Nama Gejala</th>
-				<th></th>
+				<th>Aksi</th>
 			</thead>
 			<tbody>
 				@forelse($gejala as $row)
@@ -22,20 +22,22 @@
 					<td><b>{{ $row->kode }}</b></td>
 					<td>{{ $row->nama }}</td>
 					<td>
-						<div class="d-flex justify-between-space">
-							<div>
-								<button class="btn btn-primary btn-sm edit" data-id="{{ $row->id }}"><i class="fas fa-edit"></i></button>
-							</div>
+						<div class="d-flex justify-content-between">
+							<button class="btn btn-primary btn-sm edit" data-id="{{ $row->id }}">
+								<i class="fas fa-edit"></i>
+							</button>
 							<form action="{{ route('admin.gejala.destroy', $row->id) }}" method="post">
 								@csrf
-								<button type="submit" class="btn btn-danger btn-sm ml-1 delete"><i class="fas fa-trash"></i></button>
+								<button type="submit" class="ml-1 btn btn-danger btn-sm delete">
+									<i class="fas fa-trash"></i>
+								</button>
 							</form>
 						</div>
 					</td>
 				</tr>
 				@empty
 				<tr>
-					<td colspan="3" class="text-center">No Data</td>
+					<td colspan="3" class="text-center">Tidak Ada Data</td>
 				</tr>
 				@endforelse
 			</tbody>
@@ -51,14 +53,14 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="nama">Kode Gejala</label>
-						<input type="text" class="form-control" name="kode">
+						<label for="kode">Kode Gejala</label>
+						<input type="text" class="form-control border-primary" name="kode">
 					</div>
 				</div>
 				<div class="col-md-8">
 					<div class="form-group">
 						<label for="nama">Nama Gejala</label>
-						<input type="text" class="form-control" name="nama">
+						<input type="text" class="form-control border-primary" name="nama">
 					</div>
 				</div>
 			</div>
@@ -68,21 +70,21 @@
 		</form>
 	</x-modal>
 
-	<x-modal title="Tambahkan Gejala" id="edit-gejala">
+	<x-modal title="Edit Gejala" id="edit-gejala">
 		<form action="{{ route('admin.gejala.update') }}" method="POST">
 			@csrf
 			<input type="hidden" name="id">
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="nama">Kode Gejala</label>
-						<input type="text" class="form-control" name="kode">
+						<label for="kode">Kode Gejala</label>
+						<input type="text" class="form-control border-primary" name="kode">
 					</div>
 				</div>
 				<div class="col-md-8">
 					<div class="form-group">
 						<label for="nama">Nama Gejala</label>
-						<input type="text" class="form-control" name="nama">
+						<input type="text" class="form-control border-primary" name="nama">
 					</div>
 				</div>
 			</div>
@@ -103,7 +105,7 @@
 				e.preventDefault()
 				Swal.fire({
 				  title: 'Hapus data gejala?',
-				  text: "Kamu tidak akan bisa mengembalikannya kembali!",
+				  text: "Data yang dihapus tidak dapat dikembalikan!",
 				  icon: 'warning',
 				  showCancelButton: true,
 				  confirmButtonColor: '#d33',
